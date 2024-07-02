@@ -1,0 +1,21 @@
+/*
+-------------REVISÃO---------------
+
+const nome = 'Bruna'
+let sobrenome = 'Lânnig'
+var idade = 23
+let souEstudante = true
+
+console.log(`Meu nome é ${nome} ${sobrenome}, tenho ${idade} anos. Sou estudante? ${souEstudante}.`)
+
+
+Passando strings para number
+Number(variavél que deseja transformar)
+
+Passando number para string
+variavelQdesejaTransformar.toString()*/
+
+
+const readlineSync = require('readline-sync')//Semelhante ao prompt porém no terminal.
+const nome2 = readlineSync.question("Digite seu nome: ")
+console.log(`Ola ${nome2}, seja bem vigitnde!`)

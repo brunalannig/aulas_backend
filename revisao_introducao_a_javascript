@@ -1,0 +1,73 @@
+/*
+-------------REVISÃO---------------
+
+const nome = 'Bruna'
+let sobrenome = 'Lânnig'
+var idade = 23
+let souEstudante = true
+
+console.log(`Meu nome é ${nome} ${sobrenome}, tenho ${idade} anos. Sou estudante? ${souEstudante}.`)
+
+
+Passando strings para number
+Number(variavél que deseja transformar)
+
+Passando number para string
+variavelQdesejaTransformar.toString()
+
+Igual === (Compara valor e tipo)
+Diferente !==
+Maior >
+Maior ou Igual >=
+
+
+---------------------------------------
+
+//Semelhante ao prompt porém no terminal.
+const readlineSync = require('readline-sync')
+const nome2 = readlineSync.question("Digite seu nome: ")
+console.log(`Ola ${nome2}, seja bem vinde!`)
+
+//npm install readline-sync
+
+//Faça 3 perguntas ao usuário, pedindo 3 notas. Calcule a média destas notas.
+const readlineSync = require('readline-sync')
+const nota1 = Number(readlineSync.question("Digite sua nota: "))
+const nota2 = Number(readlineSync.question("Digite sua nota: "))
+const nota3 = Number(readlineSync.question("Digite sua nota: "))
+
+const media=((nota1 + nota2 + nota3)/3)
+console.log(`Sua média é: ${media}`)
+
+//  Peça para o usuário inserir dois numeros. Compare estes numeros e verifique se o primerio numero é maior, menor, iguak, etc que o segundo.
+const readlineSync = require('readline-sync')
+const num1 = (readlineSync.question("Digite um numero:"))
+const num2 = (readlineSync.question("Digite outro numero:"))
+const igual = (num1===num2)
+const diferente = (num1!==num2)
+const maior = (num1<num2)
+const menor = (num1>num2)
+const maiorIgual = (num1>=num2)
+const menorIgual = (num1<=num2)
+
+console.log(`O ${num1} é igual a ${num2}? ${igual}.`)
+console.log(`O ${num1} é diferente a ${num2}? ${diferente}.`)
+console.log(`O ${num1} é menor a ${num2}? ${menor}.`)
+console.log(`O ${num1} é maior a ${num2}? ${maior}.`)
+console.log(`O ${num1} é maior ou igual a ${num2}? ${maiorIgual}.`)
+console.log(`O ${num1} é menor igual a ${num2}? ${menorIgual}.`)
+console.log(`As comparações são: ${igual}, ${diferente}, ${menor}, ${maior}, ${maiorIgual} e ${menorIgual}.`)
+
+//Crie um array com pelo menos 5 raças de cachorro.Peça ao usuario iserir um numero de 0 a 4. Imprima no console a raça correspondente a posição escolhida pelo u.
+const racasCachorro = ['puddle', 'buldog', 'caramelo', 'chihuaha', 'frances']
+const readlineSync = require('readline-sync')
+    const indice = Number(readlineSync.question("Digite um numero entr 0 e 4: "))
+    console.log(`O cachorro escolhido é: ${racasCachorro[indice]}`)*/
+
+//Condicionais(if else)
+const idade = 18
+const temCarteira = true
+const temCarro= true
+    if(idade >= 18 && temCarteira === true && temCarro === true){ //e(&&), ou(||)
+        console.log("Você pode dirigir.")
+    }

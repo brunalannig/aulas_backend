@@ -1,0 +1,34 @@
+//Aula 4 - 04-07
+
+/*//string
+let nome:string = 'bruna'
+
+//number
+let idade:number = 20
+
+//boolean
+let souEstudante:boolean = true
+
+console.log(`Meu nome é ${nome} e tenho ${idade}. Sou estudante? ${souEstudante}`)*/
+
+
+//Crie uma função que pede nome, idade, se tem carteira de motorista. Usar readline.
+let nome: string
+let idade: number
+let respostaCnh: string
+
+import * as leitor from 'readline-sync'
+nome = leitor.question("Digite seu nome: ")
+idade = leitor.question("Digite sua idade: ")
+respostaCnh = leitor.question("Voce tem CNH?")
+
+
+function podeDirigir(name: string, age: number, answerCnh: string): void {
+    if (age >= 18 && answerCnh.toLocaleLowerCase() === `sim`) {
+        console.log(`${name}, você pode dirigir`)
+    } else {
+        console.log(`${name}, você não pode dirigir.`)
+    }
+}
+
+podeDirigir(nome, idade, respostaCnh)

@@ -1,0 +1,111 @@
+// AULA 5 - 05/07
+
+//ARRAYS
+let array: Array<number> = [1,2,3] //ou
+let array2: number[] = [1,2,3]
+let array3: string[] = ["cachorro","gato","passaro"]
+
+//OBJETO
+let person: {name: string, age: number} =  //person--nome do objeto | name e age -- parametros
+{
+    name: "Leo",
+    age: 29
+}
+
+//TIPAGEM EM FUNÇÃO
+function soma(num1:number,num2:number):number{      // ):number (tipo de retorno number)
+    return num1+num2
+}
+
+function frase (nome:string):string{                // ):number (tipo de retorno string) | sem retorno - :void
+    return `Olá ${nome}, tudo bem?`
+}
+
+function frase1 (nome?:string):void {               // "?" serve para deixar uma variável não obrigatória
+    console.log("Hello",nome || "World")
+}
+frase1("Joao")
+
+//Função de desconto
+function desconto (preco: number, desconto: number = 0.05): number {
+    return preco * (1 - desconto)
+}
+
+console.log(desconto(5))
+
+
+//POO - Programação Orientadas a Objetos - CLASSES
+
+//molde para objeto do tipo cachorro (o que ele tem (atributos) e o que ele faz(metodos))
+class Cachorro { 
+    nome: string
+    peso: number
+    pelagem: string
+    raca: string
+
+    constructor(nomeCachorro: string, pesoCachorro: number, pelagemCachorro: string){
+        this.nome = nomeCachorro
+        this.peso = pesoCachorro
+        this.pelagem = pelagemCachorro
+        this.raca = "Golden"
+    }
+
+    latir(): void {
+        console.log(`${this.nome} está latindo`)
+    }
+
+    correr(): void {
+        console.log(`${this.nome} esta correndo`)
+    }
+
+    comer(): string {
+        return `${this.nome} esta comendo`
+    }
+}
+
+//Criando objeto usando classe
+const meuCachorro: Cachorro = new Cachorro('Lui', 5, 'Amarelo')
+const meuOutroCachorro: Cachorro = new Cachorro('Paulo', 9, 'Cinza')
+
+//Chamando um atributo
+console.log(meuCachorro.nome)
+meuOutroCachorro.latir()*/
+
+
+
+
+//Criem uma classe Coruja 
+//3 atributos
+//3 metodos
+//Nao esqueca do constructor
+//Depois que criar classe, instancie dois objetos coruja e chame os metodos.
+
+//molde para objeto do tipo
+class Coruja{
+    nome: string
+    idade: number
+    comprimento: number
+
+    constructor(nomeCoruja: string, idadeCoruja: number, comprimentoCoruja: number){
+        this.nome = nomeCoruja
+        this.idade = idadeCoruja
+        this.comprimento = comprimentoCoruja
+    }
+
+    voar(): void {
+        console.log(`${this.nome} esta voando.`)
+    }
+    cacar(): void {
+        console.log(`${this.nome} esta caçando.`)
+    }
+    dormir(): string {
+        return `${this.nome} esta dormindo.`
+    }
+}
+//Criando objeto
+const umaCoruja: Coruja = new Coruja('Vita', 4, 0.17)
+const outraCoruja: Coruja = new Coruja('Loi', 10, 0.53)
+
+//Chamando um atributo
+console.log(umaCoruja.nome)
+outraCoruja.voar()

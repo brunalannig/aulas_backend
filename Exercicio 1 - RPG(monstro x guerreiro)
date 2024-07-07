@@ -1,0 +1,63 @@
+//molde guerreiro
+class Guerreiro{
+  nome: string
+  tipo: string
+  forca: number
+  saude: number
+  alvo: Monstro
+
+  constructor(nomeGuerreiro: string){
+    this.nome = nomeGuerreiro
+    this.forca = 60
+    this.saude = 100
+  }
+
+  atacar(alvo): void {
+    console.log(`${this.nome} esta atacando com ${this.forca} de forca.`)
+    alvo.sofrerDano(this.forca) 
+  }
+  sofrerDano(forca): void {
+    this.saude = this.saude-forca
+    console.log(`${this.nome} está sofrendo dano de ${forca}. Pontos de saúde: ${this.saude} `)
+    
+  }
+}
+
+//molde monstro
+class Monstro{
+  nome: string
+  forca: number
+  saude: number
+  alvo: Guerreiro
+
+constructor(nomeMostro: string){
+  this.nome = nomeMostro
+  this.forca = 50
+  this.saude = 10
+}
+
+  atacar(alvo): void {    
+    console.log(`${this.nome} esta atacando com ${this.forca} de forca.`)
+    alvo.sofrerDano(this.forca)
+
+    
+    
+  }
+  sofrerDano(forca): void {
+    this.saude=this.saude-forca
+    console.log(`${this.nome} está sofrendo dano de ${forca}. Pontos de saúde: ${this.saude}`)
+    if(this.saude<0){
+      console.log("Himi o monstro morreu!")
+    }
+  }
+}
+
+//Criando objeto
+const oGuerreiro: Guerreiro = new Guerreiro ("Olive o Guerreiro")
+const oMonstro: Monstro = new Monstro("Himi o Monstro")
+
+oMonstro.atacar(oGuerreiro)
+console.log("\n")
+oMonstro.atacar(oGuerreiro)
+console.log("\n")
+oGuerreiro.atacar(oMonstro)

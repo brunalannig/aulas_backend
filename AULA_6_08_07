@@ -1,0 +1,56 @@
+//CARRO
+
+import { Moto } from "./Moto";
+export class Carro {
+    marca: string
+    cor: string
+    combustivel: number
+
+    constructor(marcaMoto: string, corMoto: string, combustivelMoto: number) {
+        this.marca = marcaMoto
+        this.cor = corMoto
+        this.combustivel = combustivelMoto
+    }
+
+    acelerar(): void{
+        console.log(`${this.marca} está acelerando.`)
+    }
+
+    artingirMoto(moto: Moto): void{
+        console.log(`${this.marca} atingiu ${moto.marca}.`)
+    }
+}
+
+//MOTO
+
+import { Carro } from "./Carro";
+export class Moto{
+    marca: string
+    cor: string
+    gasolina: number
+
+constructor(marcaMoto: string, corMoto: string, gasolinaMoto: number){
+    this.marca = marcaMoto
+    this.cor = corMoto
+    this.gasolina = gasolinaMoto
+}
+    acelerar(): void{
+        console.log(`${this.marca} está acelerando.`)
+    }
+
+    atingirCarro(carro: Carro): void{
+        console.log(`${this.marca} atingiu ${carro.marca}`)
+    }
+}
+
+//INDEX.TS
+import { Carro } from "./Carro";
+import { Moto } from "./Moto";
+
+const carro:Carro = new Carro ("Toyota", "Cinza", 50)
+const moto: Moto = new Moto ("Yamaha", "Vermelho", 80)
+console.clear()
+carro.acelerar()
+moto.acelerar()
+moto.atingirCarro(carro)
+carro.artingirMoto(moto)

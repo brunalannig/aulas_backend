@@ -1,0 +1,95 @@
+//CARRO
+import { Moto } from "./Moto";
+export class Carro {
+    //Atributos
+    private marca: string
+    private cor: string
+    private combustivel: number
+
+    constructor(marcaMoto: string, corMoto: string, combustivelMoto: number) {
+        this.marca = marcaMoto
+        this.cor = corMoto
+        this.combustivel = combustivelMoto
+    }
+    
+    //Getters e Setters:
+    public getMarca(): string {
+        return this.marca
+    }
+
+    public setMarca(newMarca: string): string {
+        return this.marca = newMarca
+    }
+
+    public getCor(): string {
+        return this.cor
+    }
+
+    public setCor(newCor: string): string {
+        return this.cor = newCor
+    }
+
+    public getCombustivel(): number {
+        return this.combustivel
+    }
+
+    public setCombustivel(newCombustivel: number): number {
+        return this.combustivel = newCombustivel
+    }
+
+    //Metodos
+    public acelerar(): void{
+        console.log(`${this.marca} está acelerando.`)
+    }
+
+    public artingirMoto(moto: Moto): void{
+        console.log(`${this.marca} atingiu ${moto.marca}.`)
+    }
+}
+
+//MOTO
+import { Carro } from "./Carro";
+export class Moto{
+    private marca: string
+    private cor: string
+    private gasolina: number
+
+constructor(marcaMoto: string, corMoto: string, gasolinaMoto: number){
+    this.marca = marcaMoto
+    this.cor = corMoto
+    this.gasolina = gasolinaMoto
+}
+
+//Getters e Setters:
+public getMarca(): string {
+    return this.marca
+}
+
+public setMarca(newMarca: string): string {
+    return this.marca = newMarca
+}
+
+public getCor(): string {
+    return this.cor
+}
+
+public setCor(newCor: string): string {
+    return this.cor = newCor
+}
+
+public getGasolina(): number {
+    return this.gasolina
+}
+
+public setGasolina(newGasolina: number): number {
+    return this.gasolina = newGasolina
+}
+//Metodos
+public acelerar(): void{
+    console.log(`${this.marca} está acelerando.`)
+ }
+
+public atingirCarro(carro: Carro): void{
+     console.log(`${this.marca} atingiu ${carro.marca}`)
+ }
+}

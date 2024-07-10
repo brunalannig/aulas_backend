@@ -1,0 +1,61 @@
+//PAI
+export class Pai{
+    nome: string
+    cor: string
+    
+    constructor(nome: string, cor: string){
+        this.nome = nome
+        this.cor = cor
+    }
+
+    andar(): void {
+        console.log(`${this.nome} esta andando.`)
+    }
+}
+
+//FILHO
+import { Pai } from "./Pai";
+    export class Filho extends Pai{
+        altura: number
+
+        constructor(cor: string, nome:string, altura:number){
+            super(cor,nome)
+            this.altura = altura
+        }
+
+        estudar(): void {
+            console.log(`${this.nome} esta estudando.`)
+        }
+    }
+
+//NETO
+import { Filho } from "./Filho";
+export class Neto extends Filho{
+    peso: number
+
+    constructor(cor: string, nome: string, altura: number, peso: number){
+        super(cor, nome, altura)
+        this.peso = peso
+    }
+
+    //metodo
+    andar(): void {
+        console.log(`${this.nome} esta engatinhando.`)
+    }
+}
+
+//INDEX
+import { Pai } from "./Pai";
+import { Filho } from "./Filho";
+import { Neto } from "./Neto";
+
+const pai: Pai = new Pai ('Jose','branco')
+const filho: Filho = new Filho ('Roberto','pardo', 1.62)
+const neto: Neto = new Neto ('Junior','pardo', 1.59, 60)
+
+pai.andar()
+filho.andar()
+console.log(`Nome do pai: ${pai.nome}. ${"\n"}Nome do filho: ${filho.nome}.${"\n"}Nome do neto: ${neto.nome}.`)
+console.log(`Altura do neto: ${neto.altura}.`)
+filho.estudar()
+neto.andar()

@@ -1,0 +1,52 @@
+//ANIMAL
+export class Animal {
+    nome: string
+    peso: number
+
+    constructor(nome: string, peso: number){
+        this.nome = nome;
+        this.peso = peso;
+    }
+}
+
+//CACHORRO
+import { Animal } from "./Animal";
+
+export class Cachorro extends Animal{
+   
+    constructor(nome: string, peso: number){
+        super(nome, peso)
+    }
+
+    latir(): void {
+        console.log("au au")
+    }
+}
+
+//CORUJA
+import { Animal } from "./Animal";
+
+export class Coruja extends Animal{
+    cor: string
+
+    constructor(nome: string, peso: number, cor: string){
+        super(nome, peso)
+        this.cor = cor
+     }
+
+    voar(): void {
+        console.log("voando")
+    }
+}
+
+
+//INDEX
+import { Cachorro } from "./Cachorro";
+import { Coruja } from "./Coruja";
+
+const meuCachorro: Cachorro = new Cachorro ("aaaa", 5)
+const minhaCoruja: Coruja = new Coruja ("aaa", 5, "azul")
+
+console.log(meuCachorro.nome)
+meuCachorro.latir()
+minhaCoruja.voar()

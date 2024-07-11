@@ -1,0 +1,91 @@
+//interface PRODUTOS
+export interface Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    carregar(): void
+}
+
+//ARROZ
+import { Produtos } from "./Produtos"
+export class Arroz implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    carregar(): void {
+        
+    }
+
+    pesar(): void{
+
+    }
+}
+
+//FEIJAO
+import { Produtos } from "./Produtos"
+export class Feijao implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    carregar(): void {
+        
+    }
+
+    levar(): void{
+        
+    }
+}
+
+//MASSA
+import { Produtos } from "./Produtos"
+export class Massa implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+    
+    carregar(): void {
+        
+    }
+}
+
+//INDEX
+import { Produtos } from "./Produtos";
+import { Arroz } from "./Arroz";
+import { Feijao } from "./Feijao";
+import { Massa } from "./Massa";
+
+const arroz: Arroz = new Arroz("a", 5, "b", 6)
+const feijao: Feijao = new Feijao("a", 5, "b", 6)
+const massa: Massa = new Massa("a", 5, "b", 6)
+
+console.log(arroz.tipo)
+feijao.carregar()
+console.log(massa.peso)

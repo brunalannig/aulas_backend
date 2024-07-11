@@ -1,0 +1,32 @@
+//PESSOA
+export class Pessoa{
+    //atributo protegido, só pode ser acessado dentro desta classe ou DENTRO das classes filhas
+    protected crianca: number
+    constructor(crianca: number){
+        this.crianca = crianca
+    }
+
+    //metodo protegido, só pode ser acessado dentro desta classe ou DENTRO das classes filhas
+    protected quantidadeCriancas(): void {
+        console.log(`Essa pessoa tem ${this.crianca} criancas.`)
+    }
+}
+
+//PAI
+import { Pessoa } from "./Pessoa";
+class Pai extends Pessoa{
+    public falar(): void {
+        console.log(`Esta falando com ${this.crianca} criancas.`)
+        //this.quantidadeCriancas // Pode acessar membros(atributos e metodos) protected da classe pai.
+    }
+}
+
+const pai = new Pessoa(4)
+//pai.quantidadeCriancas() // Nao pode acessar fora da classe
+
+const novoPai: Pai = new Pai(3)
+novoPai.falar()
+
+//public - pode ser chamado em qlqr lugar
+//protected - pode ser chamado somente nas classes e filhas destas classes
+//private - usamos getters e setters para acessa-los

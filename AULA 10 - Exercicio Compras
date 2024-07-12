@@ -1,0 +1,146 @@
+//PRODUTOS INTERFACE
+export interface Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    calcularValorTotal(preco: number, desconto: number, valorTotal: number): number //number
+}
+
+//ROUPA
+import { Produtos } from "./Produtos"
+export class Roupa implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+    
+    calcularValorTotal(preco: number, desconto: number = 0.03, valorTotal: number): number {
+        return valorTotal = preco*(1 - desconto) 
+    }
+}
+
+//PERFUME
+import { Produtos } from "./Produtos"
+export class Perfume implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    calcularValorTotal(preco: number, desconto: number = 0.08, valorTotal: number): number {
+        return valorTotal = preco*(1 - desconto) 
+    }
+}
+
+//LIVRO
+import { Produtos } from "./Produtos"
+export class Livro implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+    valorTotal: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    calcularValorTotal(preco: number, desconto: number = 0.05, valorTotal: number): number {
+        return valorTotal = preco*(1 - desconto) 
+    }
+}
+
+//INDEX PRINCIPAL
+import { Produtos } from "./Produtos/Produtos";
+import { Livro } from "./Produtos/Livro";
+import { Perfume } from "./Produtos/Perfume";
+import { Roupa } from "./Produtos/Roupa";
+
+const animalFarm: Livro = new Livro("Livro", 50.00 , "Animal Farm", 1)
+const citrico: Perfume = new Perfume("Perfume", 28.00, "Dope", 0.5)
+const camisa: Roupa = new Roupa("Roupa", 45.00, "Calca", 0.5)
+
+import * as leitor from 'readline-sync'
+//const metodo = leitor.question("Digite: ")
+
+let carrinho: Produtos[] = []  //carrinho.push (permite adicionar coisas no array)
+
+//IMPLEMENTAR MENU
+
+//Implementando função comprar produto(Permite ao usuário adicionar produtos ao carrinho.)
+function comprarProduto(item: string | number): string | number{
+   return item = carrinho.push(animalFarm) //animalFarm é exemplo, usar const produto escolhido
+}
+
+//Implementando função ver carrinho(Exibe os produtos no carrinho, mostrando o nome, tipo e preço de cada produto, além do total da compra.)
+function verCarrinho(){
+    return
+}
+
+//Implementando função pagar (Permite ao usuário escolher entre diferentes métodos de pagamento para finalizar a compra. Ao selecionar um método de pagamento, exibe o valor total da compra e pergunta se o usuário deseja prosseguir com o pagamento.)
+
+//METODOS PAGAMETNTO INTERFACE
+export interface MetodosDePagamento {
+     pagar(valor: number): number //number
+}
+
+//CARTAO
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class CartaoDeCredito implements MetodosDePagamento{
+    valor: number;
+
+    constructor(valor: number){
+        this.valor = valor
+    }
+
+    pagar(valor: number): number {
+        return valor
+    }
+}
+
+//PIX
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class Pix implements MetodosDePagamento{
+    valor: number;
+
+     constructor(valor:number){
+        this.valor = valor
+     }
+
+     pagar(valor: number): number {
+         return valor
+     }
+}
+
+//DINHEIRO
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class Dinheiro implements MetodosDePagamento{
+    valor: number;
+
+    constructor(valor: number){
+        this.valor = valor
+    }
+
+    pagar(valor:number): number {
+        return valor
+    }
+}

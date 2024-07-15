@@ -1,0 +1,225 @@
+//PRODUTOS INTERFACE
+export interface Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    calcularValorTotal(preco: number, desconto: number, valorTotal: number): number //number
+}
+//ROUPA
+import { Produtos } from "./Produtos"
+export class Roupa implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this.nome = nome
+        this.peso = peso
+    }
+    
+    calcularValorTotal(desconto: number = 0.03): number {
+        return this.preco*(1 - desconto) 
+    }
+}
+
+//PERFUME
+import { Produtos } from "./Produtos"
+export class Perfume implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    calcularValorTotal(desconto: number = 0.03): number {
+        return this.preco*(1 - desconto) 
+    }
+}
+
+//LIVRO
+import { Produtos } from "./Produtos"
+export class Livro implements Produtos{
+    tipo: string
+    preco: number
+    nome: string
+    peso: number
+    valorTotal: number
+
+    constructor(tipo: string, preco: number, nome: string, peso: number){
+        this.tipo = tipo
+        this.preco = preco
+        this. nome = nome
+        this.peso = peso
+    }
+
+    calcularValorTotal(desconto: number = 0.03): number {
+        return this.preco*(1 - desconto) 
+    }
+}
+
+//METODOS PAGAMENTO INTERFACE
+export interface MetodosDePagamento {
+    pagar(valor: number): number //number
+}
+
+//PIX
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class Pix implements MetodosDePagamento{
+    valor: number;
+
+     constructor(valor:number){
+        this.valor = valor
+     }
+
+     pagar(valor: number): number {
+         return valor
+     }
+}
+
+//DINHEIRO
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class Dinheiro implements MetodosDePagamento{
+    valor: number;
+
+    constructor(valor: number){
+        this.valor = valor
+    }
+
+    pagar(valor:number): number {
+        return valor
+    }
+}
+
+//CARTAO DE CREDITO
+import { MetodosDePagamento } from "./MetodosDePagamento";
+export class CartaoDeCredito implements MetodosDePagamento{
+    valor: number;
+
+    constructor(valor: number){
+        this.valor = valor
+    }
+
+    pagar(valor: number): number {
+        return valor
+    }
+}
+
+//INDEX PRINCIPAL
+import { Produtos } from "./Produtos/Produtos";
+import { Livro } from "./Produtos/Livro";
+import { Perfume } from "./Produtos/Perfume";
+import { Roupa } from "./Produtos/Roupa";
+
+//Produtos Cadastrados
+const animalFarm: Livro = new Livro("Livro", 50.00 , "Animal Farm", 1)
+const metamorfose: Livro = new Livro("Livro", 95.00 , "Metamorfose", 1)
+const citrico: Perfume = new Perfume("Perfume", 28.00, "Dope", 0.5)
+const camisa: Roupa = new Roupa("Roupa", 45.00, "Calca", 0.5)
+const calca: Roupa = new Roupa("Roupa", 80, "calca", 1)
+
+
+
+import * as leitor from 'readline-sync'
+
+//Array Global ("banco de dados")
+let carrinho: Produtos[] = []
+
+//Função que mostra opção de menu
+function imprimirMenu(){
+    let mensagem = ""
+    mensagem += "1. Comprar Produto \n"
+    mensagem += "2. Ver Carrinho \n"
+    mensagem += "3. Pagar \n"
+    mensagem += "4. Sair \n"
+    console.log(mensagem)
+    let opcao = Number(leitor.question("Digite a opcao: "))
+    return opcao
+}
+
+//Chamada de menu
+imprimirMenu()
+
+//Função para comprar um produto
+function comprarProduto(){
+    let item = ""
+    item += "1. Roupa \n"
+    item += "2. Perfume \n"
+    item += "3. Livro \n"
+    console.log(item)
+    let escolhaItem =  Number(leitor.question("Qual voce quer? \n"))
+        switch (escolhaItem){
+            case 1:
+                let item2 = ""
+                item2 += "1. Camisa \n"
+                item2 += "2. Calca \n"
+                console.log(item2)
+                let escolhaItem2 = Number(leitor.question("QUAL:"))
+                if (escolhaItem2 === 1){
+                    carrinho.push(camisa)
+                    camisa.calcularValorTotal()
+                        } else if (escolhaItem2 === 2){
+                            carrinho.push(calca)
+                            calca.calcularValorTotal()
+            }
+                break;
+            case 2:
+                let item3 = ""
+                item3 += "1. Animal Farm \n"
+                item3 += "2. Metamorfose \n"
+                console.log(item3)
+                let escolhaItem3 = Number(leitor.question("qual:"))
+                if (escolhaItem3 === 1){
+                    carrinho.push(animalFarm)
+                    animalFarm.calcularValorTotal()
+                } else if (escolhaItem3 === 2){
+                    carrinho.push(metamorfose)
+                    metamorfose.calcularValorTotal()
+                }
+                    break;
+        }
+}
+
+function verCarrinho(){
+    for(let checkout of carrinho){
+        let precoTotal = checkout.preco
+        console.log(`O preco total e: R$${precoTotal}`)
+    }
+}
+
+comprarProduto()
+verCarrinho()
+
+//Função principal (onde integra tudo e tudo funciona =D)
+function principal(){
+    let opcao = 0
+    while(opcao !== 5){
+        opcao = imprimirMenu()
+    switch (opcao) {
+        case 1: 
+            comprarProduto()
+            break;
+        case 2: 
+            verCarrinho()
+            break;
+        case 3: 'pagar'
+            break;
+        case 4: 'sair'
+            break;
+        default:
+            break;
+    }
+    }
+}
+
+principal()

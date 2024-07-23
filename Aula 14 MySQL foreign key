@@ -1,0 +1,31 @@
+create database biblioteca;
+use biblioteca;
+
+create table livros (
+id int auto_increment primary key,
+titulo varchar(50),
+autor varchar(50),
+editora varchar(50)
+);
+
+create table autores (
+id int auto_increment primary key,
+nome varchar(50),
+nacionalidade varchar(50)
+);
+
+alter table livros add column autor_id int;
+alter table livros add constraint fk_livros_id foreign key (autor_id) references autores(id);
+UPDATE `biblioteca`.`livros` SET `autor` = 'devi' WHERE (`id` = '1');
+
+insert into autores values (default, "Incari", "Brasileira");
+insert into autores values (default, "Devi", "Inglesa");
+insert into autores values (default, "Bellti", "Brasileiro");
+
+select * from autores;
+select * from livros;
+select nome, titulo from livros, autores where autores.id != livros.autor_id;  -- <> diferente ou != 	
+
+insert into livros values (default, "Crimilin", "Incari", "Visionaria",2);
+insert into livros values (default, "Opala", "Incari", "Nimbos",2);
+insert into livros values (default, "Fanaro", "Bellti", "Nimbos",3);

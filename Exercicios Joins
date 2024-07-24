@@ -1,0 +1,97 @@
+create database loja;
+use loja;
+
+create table clientes (
+id_cliente int primary key,
+nome varchar(50)
+);
+
+create table pedidos (
+id_pedido int primary key,
+id_cliente int,
+produto varchar(50),
+foreign key (id_cliente) references clientes(id_cliente)
+);
+
+alter table pedidos add column id_produto varchar(50);
+alter table pedidos add column id_fornecedor varchar(50);
+
+create table fornecedores (
+id_fornecedor int primary key,
+nome varchar(50)
+);
+
+alter table fornecedores add column id_produto varchar(50);
+
+create table estoque (
+id_produto int primary key,
+id_fornecedor int,
+produto varchar(50),
+quantidade int,
+foreign key (id_fornecedor) references fornecedores(id_fornecedor)
+);
+
+insert into clientes (id_cliente, nome) values
+(1, 'Ana'),
+(2, 'Bruno'),
+(3, 'Carlos');
+
+insert into pedidos (id_pedido, id_cliente, produto) values
+(101, 1, 'Livro'),
+(102, 2, 'Caneta'),
+(103, 2, 'Caderno');
+
+insert into fornecedores (id_fornecedor, nome) values
+(1, 'Fornecedor A'),
+(2, 'Fornecedor B');
+
+insert into estoque (id_produto, id_fornecedor, produto, quantidade) values
+(201, 1, 'Livro', 50),
+(202, 1, 'Caneta', 100),
+(203, 2, 'Caderno', 30);
+
+select * from clientes;
+select * from pedidos;
+
+-- INNER JOIN
+select clientes.nome, pedidos.produto from clientes inner join pedidos
+on clientes.id_cliente = pedidos.id_cliente;
+
+-- LEFT JOIN
+select clientes.nome, pedidos.produto from clientes left join pedidos
+on clientes.id_cliente = pedidos.id_cliente;
+
+-- RIGHT JOIN
+select clientes.nome, pedidos.produto from clientes right join pedidos
+on clientes.id_cliente = pedidos.id_cliente;
+
+-- RIGHT JOIN Exibir todos os produtos do estoque
+-- e os fornecedores correspondentes.
+select estoque.produto, fornecedores.nome from estoque 
+right join fornecedores on estoque.id_fornecedor = fornecedores.id_fornecedor;
+
+
+-- EXERCICIOS JOINS
+
+-- INNER JOIN MULTIPLO
+-- Exibir o nome dos clientes, o produto que eles pediram, 
+-- o fornecedor desse produto e a quantidade disponível no estoque.
+select clientes.nome, pedidos.produto, fornecedores.nome, estoque.quantidade
+from clientes
+inner join pedidos on clientes.id_cliente = pedidos.id_cliente
+inner join fornecedores on pedidos.id_produto = fornecedores.id_produto
+inner join estoque on estoque.id_produto = fornecedores.id_produto; -- criar produto ou pedido
+
+-- LEFT JOIN com Condição
+-- Exibir todos os produtos do estoque, mesmo aqueles que não têm pedidos
+-- correspondentes, e a quantidade disponível.
+select estoque.produto, estoque.quantidade
+from estoque
+left join pedidos on estoque.id_produto = pedidos.id_produto;
+
+-- RIGHT JOIN com Condição
+-- Exibir todos os fornecedores e os produtos que eles fornecem,
+-- incluindo fornecedores que não têm produtos no estoque.
+select fornecedores.nome, estoque.produto
+from estoque
+right join fornecedores on fornecedores.id_fornecedor = estoque.id_fornecedor;

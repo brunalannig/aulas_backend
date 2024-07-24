@@ -1,0 +1,61 @@
+create database loja;
+use loja;
+
+create table clientes (
+id_cliente int primary key,
+nome varchar(50)
+);
+
+create table pedidos (
+id_pedido int primary key,
+id_cliente int,
+produto varchar(50),
+foreign key (id_cliente) references clientes(id_cliente)
+);
+
+create table fornecedores (
+id_fornecedor int primary key,
+nome varchar(50)
+);
+
+create table estoque (
+id_produto int primary key,
+id_fornecedor int,
+produto varchar(50),
+quantidade int,
+foreign key (id_fornecedor) references fornecedores(id_fornecedor)
+);
+
+insert into clientes (id_cliente, nome) values
+(1, 'Ana'),
+(2, 'Bruno'),
+(3, 'Carlos');
+
+insert into pedidos (id_pedido, id_cliente, produto) values
+(101, 1, 'Livro'),
+(102, 2, 'Caneta'),
+(103, 2, 'Caderno');
+
+insert into fornecedores (id_fornecedor, nome) values
+(1, 'Fornecedor A'),
+(2, 'Fornecedor B');
+
+insert into estoque (id_produto, id_fornecedor, produto, quantidade) values
+(201, 1, 'Livro', 50),
+(202, 1, 'Caneta', 100),
+(203, 2, 'Caderno', 30);
+
+select * from clientes;
+select * from pedidos;
+
+-- INNER JOIN
+select clientes.nome, pedidos.produto from clientes inner join pedidos
+on clientes.id_cliente = pedidos.id_cliente;
+
+-- LEFT JOIN
+select clientes.nome, pedidos.produto from clientes left join pedidos
+on clientes.id_cliente = pedidos.id_cliente;
+
+-- RIGHT JOIN
+select clientes.nome, pedidos.produto from clientes right join pedidos
+on clientes.id_cliente = pedidos.id_cliente;

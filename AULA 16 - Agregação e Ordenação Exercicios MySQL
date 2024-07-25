@@ -1,0 +1,64 @@
+CREATE DATABASE company;
+USE company;
+
+CREATE TABLE departments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+INSERT INTO departments (name) VALUES 
+('Engineering'), 
+('Human Resources'), 
+('Marketing'), 
+('Sales');
+
+INSERT INTO employees (name, salary, department_id) VALUES 
+('Alice', 60000, 1), 
+('Bob', 70000, 1), 
+('Charlie', 55000, 2), 
+('David', 45000, 2), 
+('Eve', 50000, 3), 
+('Frank', 65000, 4), 
+('Grace', 75000, 4), 
+('Heidi', 80000, 1);
+
+select * from employees;
+select * from departments;
+
+--  Calcula a soma dos salários por departamento e ordenar os resultados.
+-- Agrupa os empregados por departamento, calcula a soma dos salários
+-- em cada departamento e ordena os resultados pela soma dos salários em ordem descendente.
+SELECT department_id, SUM(salary) as total_salary
+FROM employees
+GROUP BY department_id
+ORDER BY total_salary DESC;
+
+-- EXERCICIOS
+
+-- Contar o número de empregados em cada departamento.
+select department_id, COUNT(id) as total_employees
+from employees
+group by department_id
+
+-- Encontrar o salário médio em cada
+-- departamento e ordenar os resultados em ordem ascendente de salário médio.
+select department_id, AVG(salary) as average_salary
+from employees
+group by department_id
+order by average_salary ASC;
+
+-- Identificar o maior salário em cada departamento
+-- e ordenar os resultados pelo nome do departamento em ordem alfabética.
+select departments.name, MAX(salary) as max_salary
+from employees
+inner join departments on departments.id = employees.department_id
+group by departments.name
+order by departments.name ASC;

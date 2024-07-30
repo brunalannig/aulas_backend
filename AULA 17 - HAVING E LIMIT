@@ -1,0 +1,45 @@
+create database gerenciador;
+use gerenciador;
+
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vendedor VARCHAR(50),
+    produto VARCHAR(50),
+    quantidade INT,
+    preco DECIMAL(10, 2),
+    categoria VARCHAR(50)
+);
+
+INSERT INTO vendas (vendedor, produto, quantidade, preco, categoria)
+VALUES
+('Carlos', 'TV', 50, 300.00, 'eletronicos'),
+('Ana', 'Laptop', 20, 1500.00, 'eletronicos'),
+('Carlos', 'Mouse', 150, 20.00, 'perifericos'),
+('Bruna', 'Teclado', 100, 50.00, 'perifericos'),
+('Ana', 'Tablet', 30, 250.00, 'eletronicos'),
+('Carlos', 'TV', 75, 300.00, 'eletronicos');
+
+SELECT vendedor, SUM(quantidade) as total_vendas
+FROM vendas
+GROUP BY vendedor
+HAVING SUM(quantidade) > 100;
+
+-- Use as cláusulas HAVING e LIMIT para responder às seguintes perguntas:
+-- Quais vendedores venderam mais de 100 unidades no total?
+select vendedor, sum(quantidade)
+from vendas
+group by vendedor
+having SUM(quantidade) > 100;
+
+-- Quais produtos da categoria 'perifericos' têm uma quantidade média vendida maior que 50?
+select categoria, AVG(quantidade)
+from vendas
+group by categoria
+having AVG(quantidade) > 50;
+
+-- Quais são os três primeiros vendedores que venderam mais de 100 unidades?
+select vendedor, sum(quantidade)
+from vendas
+group by vendedor
+having SUM(quantidade) > 100
+limit 3;

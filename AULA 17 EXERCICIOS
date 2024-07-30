@@ -1,0 +1,22 @@
+create database site;
+use site;
+
+create table CLIENTS(
+id int auto_increment primary key,
+nome varchar(70) not null,
+email varchar(70) not null
+);
+
+create table PRODUCTS(
+id int auto_increment primary key,
+nome varchar(70) not null,
+price decimal not null
+);
+
+create table ORDERS(
+id int auto_increment primary key,
+client_id int,
+foreign key (client_id) references CLIENTS(id),
+order_date date not null,
+total decimal not null
+);
